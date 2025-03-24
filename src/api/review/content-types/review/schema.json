@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reviews",
+  "info": {
+    "singularName": "review",
+    "pluralName": "reviews",
+    "displayName": "Review",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Rating": {
+      "type": "decimal"
+    },
+    "Title": {
+      "type": "string"
+    },
+    "Slug": {
+      "type": "uid",
+      "targetField": "Title"
+    },
+    "Content": {
+      "type": "richtext"
+    },
+    "PublishedDate": {
+      "type": "datetime"
+    },
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Tag": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::review.review",
+      "inversedBy": "taggedReviews"
+    },
+    "taggedReviews": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::review.review",
+      "mappedBy": "Tag"
+    }
+  }
+}
